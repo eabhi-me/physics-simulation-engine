@@ -4,6 +4,7 @@ from pydantic import BaseModel
 from typing import List, Dict, Any, Optional
 from simulation import OpticalSimulator
 import logging
+import os
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -17,13 +18,24 @@ app = FastAPI(
 )
 
 # Configure CORS
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],  # In production, specify exact origins
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+# Use ALLOWED_ORIGINS env var (comma-separated) in production, else allow all for local/dev
+allowed_origins_env = os.getenv("ALLOWED_ORIGINS", "*")
+if allowed_origins_env.strip() == "*":
+    cors_config = dict(
+        allow_origins=["*"],
+        allow_credentials=False,  # '*' cannot be combined with credentials
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
+else:
+    cors_config = dict(
+        allow_origins=[o.strip() for o in allowed_origins_env.split(",") if o.strip()],
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
+
+app.add_middleware(CORSMiddleware, **cors_config)
 
 # Pydantic models for request/response
 class Position(BaseModel):
