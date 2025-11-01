@@ -1,0 +1,90 @@
+# Optical Setup Designer - Root .gitignore
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+frontend/.env.local
+frontend/.env.*.local
+frontend/.vite/
+
+# Backend
+backend/venv/
+backend/__pycache__/
+backend/*.pyc
+backend/*.pyo
+backend/*.pyd
+backend/.Python
+backend/pip-log.txt
+backend/pip-delete-this-directory.txt
+backend/.env
+backend/.venv
+backend/env/
+backend/ENV/
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+logs/
+
+# Testing
+coverage/
+.nyc_output/
+*.cover
+.coverage
+.pytest_cache/
+htmlcov/
+
+# Build outputs
+build/
+dist/
+*.egg-info/
+
+# OS Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Desktop.ini
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.swp
+.cache/
+
+# Package manager locks (optional - comment out if you want to include them)
+# frontend/package-lock.json
+# frontend/yarn.lock
+# backend/poetry.lock
+
+# Environment files
+.env
+.env.local
+.env.*.local
+.env.production
+
+# Deployment
+.vercel
+.netlify
+
+# Documentation build (if using)
+docs/_build/
+site/
+
+others/
+docs/
